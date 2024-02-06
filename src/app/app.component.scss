@@ -1,0 +1,260 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic&display=swap&subset=cyrillic-ext");
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap&subset=cyrillic-ext");
+@import url("https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:200,300,regular,500,600,700,800,200italic,300italic,italic,500italic,600italic,700italic,800italic&display=swap&subset=cyrillic-ext");
+
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;800&display=swap&subset=cyrillic-ext");
+
+//<переменные>====================================================================================
+$minWidth: 320px;
+$maxWidth: 1920px;
+$maxWidthContent: 1282px;
+$maxHeight: 8134px;
+
+$widthContent2-1: 640px;
+$widthContent2-2: 440px;
+
+$borderRadiusPage: 32px;
+
+$colorBlack15: #1c1815;
+$colorBlack16: #161616;
+$colorBlack17: #171717;
+$colorRed38: #ff4538;
+$colorRed08: #f81808;
+$colorGrey35: #353535;
+$colorWhiteF9: #f9f9f9;
+$colorWhiteFE: #fefefe;
+$colorWhiteFF: #ffffff;
+$colorBorderGrey: #c9c9c9;
+
+.container {
+  margin: 0 auto;
+  padding: 0px;
+  min-width: $minWidth;
+  max-height: $maxHeight;
+  max-width: $maxWidth;
+  background-color: $colorBlack17;
+}
+
+//Страницы========================================================================================
+.pages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page {
+  width: 100%;
+}
+
+.content {
+  max-width: $maxWidthContent;
+  margin: 5rem auto;
+}
+
+.home {
+  background-color: $colorBlack17;
+}
+
+.about {
+  background-color: $colorWhiteFE;
+  border-radius: $borderRadiusPage;
+}
+
+.for-who {
+  background-color: $colorBlack16;
+}
+
+.actor {
+  background-color: $colorWhiteFF;
+  border-radius: $borderRadiusPage;
+}
+
+.agent {
+  background-color: $colorBlack17;
+}
+
+.director {
+  background-color: $colorWhiteFF;
+  border-radius: $borderRadiusPage;
+}
+
+.rewiews {
+  background-color: $colorBlack17;
+}
+
+.will-join {
+  background-color: black;
+  border-radius: $borderRadiusPage;
+}
+
+.contacts {
+  background-color: $colorWhiteFF;
+  border-radius: $borderRadiusPage;
+}
+
+//Содержимое страниц=========================================================================
+
+//1page
+.home-div {
+  margin: 80px auto 0 auto;
+  .picture {
+    height: 328px;
+    width: $maxWidthContent;
+  }
+  .text-home-div {
+    margin-bottom: 6.125rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .text-1 {
+      font-family: "Manrope";
+      font-style: normal;
+      font-weight: 300;
+      font-size: 3.75rem;
+      color: $colorWhiteF9;
+      margin: 0;
+    }
+    .text-2 {
+      font-family: monospace;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 3.75rem;
+      color: $colorRed38;
+      margin: 0;
+    }
+    p {
+      font-family: "Manrope", sans-serif;
+      font-style: normal;
+      font-weight: 200;
+      font-size: 1.125rem;
+      color: $colorWhiteF9;
+      margin: 2rem 0;
+    }
+    .btn-connect {
+      width: 198px;
+      height: 54px;
+      border-radius: 10px;
+      border: none;
+      background-color: $colorWhiteF9;
+      font-family: "Manrope", sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.125rem;
+      color: $colorBlack15;
+      cursor: pointer;
+    }
+  }
+}
+
+//2page
+
+.about-div {
+  display: flex;
+  justify-content: space-between;
+  p {
+    color: #161616;
+  }
+  .foto-1 {
+    width: $widthContent2-1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 0.5px solid $colorBorderGrey;
+    border-right: 0.5px solid $colorBorderGrey;
+    border-radius: 0 0 33px 33px;
+  }
+  .foto-2 {
+    width: $widthContent2-2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 0.5px solid $colorBorderGrey;
+    border-right: 0.5px solid $colorBorderGrey;
+    border-radius: 0 0 33px 33px;
+    #logo {
+      margin-bottom: 5rem;
+    }
+  }
+}
+
+//HEADER============================================================================================
+.header {
+  width: $maxWidth;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  background-color: $colorBlack17;
+}
+
+.home-header {
+  background-color: $colorBlack17;
+  width: $maxWidthContent;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation {
+  width: 480px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: $colorWhiteFE;
+  li {
+    cursor: pointer;
+    font-family: "Manrope", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+}
+
+.auth {
+  width: 242px;
+  .btn {
+    cursor: pointer;
+    height: 54px;
+    background-color: $colorBlack16;
+    color: $colorWhiteF9;
+    border-radius: 10px;
+    font-family: "Manrope", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+  }
+  .btn-enter {
+    width: 100px;
+    border: none;
+    font-size: 1rem;
+  }
+  .btn-auth {
+    width: 140px;
+    border: 1px solid $colorWhiteF9;
+    font-size: 1.07rem;
+  }
+}
+
+.logo {
+  width: 242px;
+  height: 40px;
+  .logo-faces {
+    cursor: pointer;
+  }
+}
+p {
+  color: $colorWhiteFE;
+}
