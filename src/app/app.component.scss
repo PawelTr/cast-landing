@@ -8,18 +8,28 @@
 $minWidth: 320px;
 $maxWidth: 1920px;
 $maxWidthContent: 1282px;
-$maxHeight: 8134px;
-
+$widthNavigation: 480px;
 $widthContent2-1: 640px;
 $widthContent2-2: 440px;
+$widthBoxHeader: 242px;
+$widthCart: 402px;
+
+$maxHeight: 8134px;
+$heightFrame1: 328px;
+$heightHomeHeader: 80px;
+$heightBoxHeader: 40px;
+$heightCart: 660px;
 
 $borderRadiusPage: 32px;
 
+//colors
+$colorBlack14: #141414;
 $colorBlack15: #1c1815;
 $colorBlack16: #161616;
 $colorBlack17: #171717;
-$colorRed38: #ff4538;
 $colorRed08: #f81808;
+$colorRed38: #ff4538;
+$colorGrey23: #232323;
 $colorGrey35: #353535;
 $colorWhiteF9: #f9f9f9;
 $colorWhiteFE: #fefefe;
@@ -97,9 +107,9 @@ $colorBorderGrey: #c9c9c9;
 
 //1page
 .home-div {
-  margin: 80px auto 0 auto;
+  margin-bottom: 0;
   .picture {
-    height: 328px;
+    height: $heightFrame1;
     width: $maxWidthContent;
   }
   .text-home-div {
@@ -153,8 +163,23 @@ $colorBorderGrey: #c9c9c9;
 .about-div {
   display: flex;
   justify-content: space-between;
+  margin-top: 0;
+  .description h1 {
+    font-family: "Noto", serif;
+    font-weight: 500;
+    font-size: 4.7rem;
+    color: $colorGrey35;
+    text-shadow: 1px 1px 2px $colorGrey35;
+    -webkit-text-stroke: 1px $colorBlack16;
+    margin-top: 5rem;
+    margin-bottom: 2.3rem;
+  }
   p {
-    color: #161616;
+    font-family: "Manrope", sans-serif;
+    font-weight: 200;
+    font-size: 1.13rem;
+    color: $colorBlack14;
+    margin: 0;
   }
   .foto-1 {
     width: $widthContent2-1;
@@ -175,13 +200,96 @@ $colorBorderGrey: #c9c9c9;
     border-right: 0.5px solid $colorBorderGrey;
     border-radius: 0 0 33px 33px;
     #logo {
-      margin-bottom: 5rem;
+      margin: 5rem auto;
+    }
+  }
+}
+
+//3page
+
+.for-who-div {
+  .container-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h1 {
+    font-family: "Noto", serif;
+    font-weight: 500;
+    font-size: 4.7rem;
+    color: $colorWhiteFF;
+  }
+  .cart {
+    box-sizing: border-box;
+    position: relative;
+    width: $widthCart;
+    height: $heightCart;
+    background-color: $colorGrey23;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    .show-more {
+      box-sizing: border-box;
+      padding: 23px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      // height: 60px;
+      background-color: transparent;
+      // z-index: 0;
+      position: absolute;
+      bottom: 0;
+      cursor: pointer;
+      border-radius: 10px;
+      &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.3);
+      }
+      .round-button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: $colorWhiteFF; /* Цвет кнопки */
+        border: none;
+        color: $colorBlack15; /* Цвет стрелки */
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      h3 {
+        color: $colorWhiteFF;
+        font-family: "Manrope", sans-serif;
+        font-weight: 300;
+        font-size: 17px;
+      }
+    }
+    .cart-description {
+      padding: 24px;
+      h2 {
+        font-family: "Manrope", sans-serif;
+        font-style: normal;
+        font-weight: 200;
+        font-size: 2rem;
+        color: $colorWhiteF9;
+        margin: 0;
+      }
+      p {
+        font-family: "Manrope", sans-serif;
+        font-style: normal;
+        font-weight: 200;
+        font-size: 1.125rem;
+        color: $colorWhiteF9;
+      }
     }
   }
 }
 
 //HEADER============================================================================================
 .header {
+  z-index: 999;
   width: $maxWidth;
   display: flex;
   justify-content: center;
@@ -193,14 +301,14 @@ $colorBorderGrey: #c9c9c9;
 .home-header {
   background-color: $colorBlack17;
   width: $maxWidthContent;
-  height: 80px;
+  height: $heightHomeHeader;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .navigation {
-  width: 480px;
+  width: $widthNavigation;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -225,7 +333,7 @@ $colorBorderGrey: #c9c9c9;
 }
 
 .auth {
-  width: 242px;
+  width: $widthBoxHeader;
   .btn {
     cursor: pointer;
     height: 54px;
@@ -243,14 +351,14 @@ $colorBorderGrey: #c9c9c9;
   }
   .btn-auth {
     width: 140px;
-    border: 1px solid $colorWhiteF9;
+    border: 0.5px solid $colorWhiteF9;
     font-size: 1.07rem;
   }
 }
 
 .logo {
-  width: 242px;
-  height: 40px;
+  width: $widthBoxHeader;
+  height: $heightBoxHeader;
   .logo-faces {
     cursor: pointer;
   }
