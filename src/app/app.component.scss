@@ -1,26 +1,58 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic&display=swap&subset=cyrillic-ext");
 @import url("https://fonts.googleapis.com/css?family=Noto+Serif:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap&subset=cyrillic-ext");
 @import url("https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:200,300,regular,500,600,700,800,200italic,300italic,italic,500italic,600italic,700italic,800italic&display=swap&subset=cyrillic-ext");
-
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;800&display=swap&subset=cyrillic-ext");
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import "_vars.scss";
+@import "_breakpoints.scss";
+
+@mixin setButtonStyles($width, $height, $backgroundColor, $color) {
+  width: $width;
+  height: $height;
+  border-radius: 10px;
+  border: none;
+  background-color: $backgroundColor;
+  color: $color;
+  font-family: "Manrope", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  cursor: pointer;
+}
+
+@mixin setFontManrope($fontColor, $fontWeight, $fontSize) {
+  // background-color: $backgroundColor;
+  color: $fontColor;
+  font-family: "Manrope", sans-serif;
+  font-style: normal;
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+}
+
+@mixin setFontNoto($fontColor, $fontSize) {
+  font-family: "Noto", serif;
+  font-weight: 500;
+  font-size: $fontSize;
+  color: $fontColor;
+  text-shadow: 1px 1px 2px $colorGrey35;
+  margin: 0;
+}
+
 //<переменные>====================================================================================
-$minWidth: 320px;
-$maxWidth: 1920px;
+$maxWidthContainer: 1920px;
 $maxWidthContent: 1282px;
 $widthNavigation: 480px;
-$widthContent2-1: 640px;
-$widthContent2-2: 440px;
-$widthBoxHeader: 242px;
-$widthCart: 402px;
-
-$maxHeight: 8134px;
-$heightFrame1: 328px;
 $heightHomeHeader: 80px;
-$heightBoxHeader: 40px;
+$widthBoxHeader: 240px;
+$heightFrame1: 328px;
+$widthRoundBtn: 60px;
+$maxHeight: 8134px;
 $heightCart: 660px;
-
+$heightRoundBtn: 60px;
+$widthCart: 402px;
 $borderRadiusPage: 32px;
+$borderRadiusCart: 10px;
 
 //colors
 $colorBlack14: #141414;
@@ -36,37 +68,376 @@ $colorWhiteFE: #fefefe;
 $colorWhiteFF: #ffffff;
 $colorBorderGrey: #c9c9c9;
 
+.isMobile {
+  // .page {
+  //   // width: 100%;
+  // }
+  .pages {
+    max-width: 600px;
+  }
+  .content {
+    max-width: 600px;
+    padding: 0 24px;
+    margin: 40px auto 0 auto;
+  }
+  ///HEADER
+  header {
+    max-width: 600px;
+    height: 72px;
+    nav {
+      max-width: 600px;
+    }
+  }
+  .nav-bar {
+    height: 72px;
+  }
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 50vh;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    z-index: 100;
+    background-color: black;
+    transition: all 0.2s ease-in-out;
+  }
+  .menu li {
+    margin-top: 40px;
+  }
+  .menu li a {
+    padding: 10px;
+  }
+  .open-menu,
+  .close-menu {
+    display: block;
+  }
+  #check:checked ~ .menu {
+    left: 0;
+  }
+  .logo img {
+    margin: 0 0 10px 80px;
+    height: 30px;
+  }
+  .auth {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 0;
+    margin: 0 20px;
+    .btn-auth {
+      @include setButtonStyles(106px, 40px, $colorBlack16, $colorWhiteF9);
+      border: 0.5px solid $colorWhiteF9;
+      font-size: 0.8rem;
+    }
+    .btn-enter p {
+      display: none;
+    }
+    .btn-enter img {
+      display: block;
+    }
+    .btn-enter {
+      width: 34px;
+      height: 34px;
+    }
+  }
+  ///1page
+  .home-div {
+    .picture {
+      height: 313px;
+      // background-image: url(assets/img/frame-1-mobile.png);
+      // @include background-image("assets/img/frame-1-mobile.png");
+      width: 100%;
+      #desktop {
+        display: none;
+      }
+      #mobile {
+        display: block;
+        // height: 313px;
+      }
+    }
+    .text-home-div {
+      margin-bottom: 2rem;
+      .text-1 {
+        text-align: center;
+        font-size: 2.5rem;
+      }
+      .text-2 {
+        font-size: 2.7rem;
+      }
+      p {
+        width: 50%;
+        @include setFontManrope($colorWhiteF9, 200, 1rem);
+      }
+      .btn-connect {
+        // box-sizing: content-box;
+        @include setButtonStyles(246px, 54px, $colorWhiteF9, $colorBlack16);
+        min-width: 246px; //Почему не работает setButton?
+      }
+    }
+  }
+  //2page
+  .about-div {
+    justify-content: center;
+    .column {
+      border: none;
+      &--wide {
+        width: 100%;
+        margin: 0;
+      }
+      &--narrow {
+        display: none;
+      }
+    }
+    .description {
+      h1 {
+        @include setFontNoto($colorGrey35, 2.5rem);
+        margin: 0;
+      }
+      p {
+        @include setFontManrope($colorBlack14, 200, 1rem);
+        margin: 1.5rem 0;
+      }
+    }
+  }
+
+  //3page
+  .for-who-div {
+    h1 {
+      @include setFontNoto($colorWhiteFF, 2.5rem);
+    }
+    .carousel-for-who {
+      display: none;
+    }
+  }
+
+  //4page
+  .actor-div {
+    .actor-info {
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+      button {
+        display: none;
+      }
+      .actor-text {
+        h1 {
+          @include setFontNoto($colorGrey35, 2.5rem);
+        }
+        p {
+          @include setFontManrope($colorBlack14, 200, 1rem);
+        }
+      }
+      .frame4 {
+        .desktop {
+          display: none;
+          // width: 686px;
+        }
+        .mobile {
+          display: block;
+          filter: grayscale(1);
+        }
+      }
+      li {
+        @include setFontManrope($colorBlack15, 200, 1rem);
+      }
+      li::before {
+        background-color: transparent;
+        border: 0.5px solid $colorRed08;
+        color: $colorRed08;
+      }
+    }
+    .actor-carousel-wrapper {
+      display: none;
+    }
+  }
+
+  //5page
+  .agent-div {
+    .agent-info {
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .frame5 {
+        text-align: center;
+        margin-bottom: 35px;
+        img {
+          width: 328px;
+        }
+      }
+      .agent-text {
+        button {
+          display: none;
+        }
+        h1 {
+          @include setFontNoto($colorWhiteF9, 2.5rem);
+        }
+        p {
+          @include setFontManrope($colorWhiteF9, 200, 1rem);
+        }
+        li {
+          @include setFontManrope($colorWhiteF9, 200, 1rem);
+        }
+      }
+    }
+  }
+
+  //6page
+  .director-div {
+    .director-info {
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-self: center;
+      .frame6 {
+        text-align: center;
+        margin-bottom: 35px;
+        img {
+          width: 327px;
+        }
+      }
+      .director-text {
+        width: 100%;
+        button {
+          display: none;
+        }
+        h1 {
+          @include setFontNoto($colorBlack14, 2.5rem);
+        }
+        p {
+          @include setFontManrope($colorBlack14, 200, 1rem);
+          margin: 1rem 0;
+        }
+        li {
+          @include setFontManrope($colorBlack15, 200, 1rem);
+        }
+      }
+    }
+  }
+
+  //7page
+  .will-join-div {
+    // height: 100%;
+    // background-position-x: center;
+    .first-line {
+      margin-bottom: 100px;
+    }
+    h1 {
+      @include setFontNoto($colorWhiteF9, 2rem);
+      span {
+        @include setFontManrope($colorRed08, 500, 1.8rem);
+        font-style: italic;
+      }
+    }
+    .btn-will-join-desktop {
+      display: none;
+    }
+    .btn-will-join-mobile {
+      display: block;
+      @include setButtonStyles(326px, 54px, transparent, $colorWhiteF9);
+      font-size: 1rem;
+      margin: 2.5rem;
+      border: 0.5px solid $colorWhiteF9;
+    }
+  }
+
+  //8page
+  .contacts-div {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    .contacts-info {
+      .btn-contacts {
+        @include setButtonStyles(326px, 60px, $colorBlack15, $colorWhiteF9);
+        font-size: 1.15rem;
+        margin: 2.5rem auto;
+      }
+      h1 {
+        @include setFontNoto($colorBlack14, 2.5rem);
+      }
+      span {
+        margin: 1.2rem 0;
+      }
+      p {
+        @include setFontManrope($colorBlack14, 200, 1rem);
+        margin: 0.2rem;
+      }
+    }
+    .contacts-img {
+      margin-bottom: 35px;
+      .desktop {
+        display: none;
+      }
+      .mobile {
+        display: block;
+      }
+    }
+  }
+  //footer
+  footer {
+    background-color: #222222;
+    .top-footer {
+      flex-direction: column-reverse;
+      span {
+        display: flex;
+        flex-direction: column;
+        margin: 1.5rem;
+        p {
+          font-size: 0.85rem;
+          font-weight: 200;
+        }
+      }
+    }
+    .bottom-footer {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
 .container {
   margin: 0 auto;
   padding: 0px;
-  min-width: $minWidth;
-  max-height: $maxHeight;
-  max-width: $maxWidth;
+  width: 100%;
   background-color: $colorBlack17;
+  // position: absolute;
 }
 
 //Страницы========================================================================================
 .pages {
+  // width: $maxWidthContainer;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .page {
+  // position: absolute;
+  // min-width: 2000px;
   width: 100%;
+  // min-width: $maxWidthContainer;
+  display: flex;
+  box-sizing: border-box;
 }
 
 .content {
   max-width: $maxWidthContent;
-  margin: 5rem auto;
+  width: 100%;
+  margin: 78px auto;
+  .isMobile {
+    max-width: 600px;
+  }
 }
+//page style
 
 .home {
   background-color: $colorBlack17;
 }
 
-.about {
+.about,
+.actor,
+.director,
+.contacts {
   background-color: $colorWhiteFE;
   border-radius: $borderRadiusPage;
 }
@@ -75,34 +446,190 @@ $colorBorderGrey: #c9c9c9;
   background-color: $colorBlack16;
 }
 
-.actor {
-  background-color: $colorWhiteFF;
-  border-radius: $borderRadiusPage;
-}
-
-.agent {
-  background-color: $colorBlack17;
-}
-
-.director {
-  background-color: $colorWhiteFF;
-  border-radius: $borderRadiusPage;
-}
-
+.agent,
 .rewiews {
   background-color: $colorBlack17;
 }
 
 .will-join {
-  background-color: black;
-  border-radius: $borderRadiusPage;
+  background-image: url("/assets/img/foto8.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  // height: 1008px;
+  // height: 100%;
 }
 
-.contacts {
-  background-color: $colorWhiteFF;
-  border-radius: $borderRadiusPage;
+//HEADER============================================================================================
+header {
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  z-index: 999;
+  width: 100%;
+  // display: flex;
+  // justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  background-color: $colorBlack17;
+}
+nav {
+  width: 1280px;
+  height: 80px;
+}
+.nav-bar {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  position: relative;
+  // background-color: var(--color2);
+  // padding: 0 20px;
 }
 
+.logo img {
+  height: 40px;
+}
+.menu {
+  display: flex;
+}
+.menu li {
+  padding-left: 30px;
+}
+.menu li a {
+  @include setFontManrope($colorWhiteF9, 500, 1rem);
+  display: inline-block;
+  text-decoration: none;
+  // color: var(--color1);
+  text-align: center;
+  transition: 0.15s ease-in-out;
+  position: relative;
+}
+.menu li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 1px;
+  background-color: $colorWhiteF9;
+  transition: 0.15s ease-in-out;
+}
+.menu li a:hover:after {
+  width: 100%;
+}
+.open-menu,
+.close-menu {
+  position: absolute;
+  color: $colorWhiteF9;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: none;
+}
+.open-menu {
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+.close-menu {
+  top: 20px;
+  left: 20px;
+}
+#check {
+  display: none;
+}
+
+// .home-header {
+//   background-color: $colorBlack17;
+//   width: $maxWidthContent;
+//   height: $heightHomeHeader;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+// }
+
+// .navigation {
+//   width: 490px;
+//   height: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   .open-menu,
+//   .close-menu {
+//     position: absolute;
+//     color: $colorWhiteF9;
+//     cursor: pointer;
+//     font-size: 2rem;
+//     display: none;
+//   }
+// }
+
+// .menu {
+//   width: 100%;
+//   display: flex;
+//   justify-content: space-between;
+//   list-style: none;
+//   margin: 0;
+//   padding: 0;
+//   color: $colorWhiteFE;
+//   li a {
+//     @include setFontManrope($colorWhiteF9, 500, 1rem);
+
+//     display: inline-block;
+//     cursor: pointer;
+//     text-decoration: none;
+//     transition: 0.1s ease-in-out;
+//     position: relative;
+//   }
+//   li a::after {
+//     content: "";
+//     position: absolute;
+//     // padding: 10px;
+//     bottom: 0;
+//     left: 0;
+//     width: 0;
+//     height: 1px;
+//     background-color: $colorWhiteF9;
+//     transition: 0.1s ease-in-out;
+//   }
+//   li a:hover::after {
+//     width: 100%;
+//   }
+// }
+
+.auth {
+  display: flex;
+  justify-content: space-between;
+  width: 240px;
+  .btn-enter {
+    @include setButtonStyles(100px, 54px, $colorBlack16, $colorWhiteF9);
+    font-size: 1rem;
+  }
+  .btn-enter img {
+    display: none;
+  }
+  .btn-auth {
+    @include setButtonStyles(140px, 54px, $colorBlack16, $colorWhiteF9);
+    border: 0.5px solid $colorWhiteF9;
+    font-size: 1.07rem;
+  }
+}
+
+.logo {
+  width: 240px;
+  height: 40px;
+  .logo-faces {
+    cursor: pointer;
+  }
+}
+p {
+  color: $colorWhiteFE;
+}
 //Содержимое страниц=========================================================================
 
 //1page
@@ -110,50 +637,47 @@ $colorBorderGrey: #c9c9c9;
   margin-bottom: 0;
   .picture {
     height: $heightFrame1;
-    width: $maxWidthContent;
+    width: 100%;
+    box-sizing: border-box;
+    #desktop {
+      display: block;
+    }
+    #mobile {
+      display: none;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      filter: grayscale(1);
+    }
   }
   .text-home-div {
     margin-bottom: 6.125rem;
+    padding-top: 5.312rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     .text-1 {
-      font-family: "Manrope";
-      font-style: normal;
-      font-weight: 300;
-      font-size: 3.75rem;
-      color: $colorWhiteF9;
+      @include setFontManrope($colorWhiteF9, 300, 3.75rem);
+      font-family: "Manrope", serif;
       margin: 0;
     }
     .text-2 {
       font-family: monospace;
       font-style: italic;
       font-weight: 300;
-      font-size: 3.75rem;
+      font-size: 3.9rem;
       color: $colorRed38;
       margin: 0;
     }
     p {
-      font-family: "Manrope", sans-serif;
-      font-style: normal;
-      font-weight: 200;
-      font-size: 1.125rem;
-      color: $colorWhiteF9;
+      @include setFontManrope($colorWhiteF9, 200, 1.125rem);
       margin: 2rem 0;
     }
     .btn-connect {
-      width: 198px;
-      height: 54px;
-      border-radius: 10px;
-      border: none;
-      background-color: $colorWhiteF9;
-      font-family: "Manrope", sans-serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 1.125rem;
-      color: $colorBlack15;
-      cursor: pointer;
+      @include setButtonStyles(198px, 54px, $colorWhiteF9, $colorBlack16);
     }
   }
 }
@@ -164,71 +688,104 @@ $colorBorderGrey: #c9c9c9;
   display: flex;
   justify-content: space-between;
   margin-top: 0;
+  img {
+    filter: grayscale(1);
+  }
   .description h1 {
-    font-family: "Noto", serif;
-    font-weight: 500;
-    font-size: 4.7rem;
-    color: $colorGrey35;
-    text-shadow: 1px 1px 2px $colorGrey35;
-    -webkit-text-stroke: 1px $colorBlack16;
-    margin-top: 5rem;
-    margin-bottom: 2.3rem;
+    @include setFontNoto($colorGrey35, 4.7rem);
+    margin: 5rem 1rem 2rem 0.5rem;
   }
   p {
-    font-family: "Manrope", sans-serif;
-    font-weight: 200;
-    font-size: 1.13rem;
-    color: $colorBlack14;
-    margin: 0;
+    @include setFontManrope($colorBlack14, 200, 1.13rem);
+    margin: 0 1rem;
   }
-  .foto-1 {
-    width: $widthContent2-1;
+  .column {
+    border-left: 0.5px solid $colorBorderGrey;
+    border-right: 0.5px solid $colorBorderGrey;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-left: 0.5px solid $colorBorderGrey;
-    border-right: 0.5px solid $colorBorderGrey;
-    border-radius: 0 0 33px 33px;
-  }
-  .foto-2 {
-    width: $widthContent2-2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border-left: 0.5px solid $colorBorderGrey;
-    border-right: 0.5px solid $colorBorderGrey;
-    border-radius: 0 0 33px 33px;
-    #logo {
-      margin: 5rem auto;
+    border-radius: 0 0 32px 32px;
+
+    &--wide {
+      width: 50%;
+      margin-right: 20px;
     }
+
+    &--narrow {
+      width: 30%;
+      align-items: center;
+      margin-left: 20px;
+
+      #logo {
+        margin: 5rem auto;
+      }
+    }
+  }
+
+  .photo-page-2 {
+    width: 100%;
   }
 }
 
-//3page
+//SWIPER
+swiper-container {
+  width: 100%;
+}
+.swiper-for-who {
+  height: 660px;
+}
+.swiper-actor,
+.swiper-agent {
+  height: 456px;
+}
 
+.swiper-casting {
+  height: 508px;
+}
+
+swiper-slide {
+  background: transparent;
+  margin-right: 20px;
+}
+.slide-for-who {
+  width: 402px;
+}
+.slide-actor,
+.slide-agent {
+  width: 302px;
+}
+
+.slide-casting {
+  width: 410px;
+}
+
+swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+///
+
+//3page
 .for-who-div {
-  .container-cart {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  img {
+    filter: grayscale(1);
   }
   h1 {
-    font-family: "Noto", serif;
-    font-weight: 500;
-    font-size: 4.7rem;
-    color: $colorWhiteFF;
+    @include setFontNoto($colorWhiteFF, 4.7rem);
+    margin-bottom: 5rem;
   }
-  .cart {
+  .cart-for-who {
     box-sizing: border-box;
     position: relative;
-    width: $widthCart;
-    height: $heightCart;
+    max-width: $widthCart;
     background-color: $colorGrey23;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 10px;
+    border-radius: $borderRadiusCart;
     .show-more {
       box-sizing: border-box;
       padding: 23px;
@@ -236,133 +793,416 @@ $colorBorderGrey: #c9c9c9;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      // height: 60px;
       background-color: transparent;
-      // z-index: 0;
       position: absolute;
       bottom: 0;
       cursor: pointer;
-      border-radius: 10px;
+      border-radius: $borderRadiusCart;
       &:hover {
-        background-color: rgba($color: #000000, $alpha: 0.3);
+        background-color: rgba($color: $colorBlack17, $alpha: 0.3);
       }
       .round-button {
-        width: 60px;
-        height: 60px;
+        @include setButtonStyles($widthRoundBtn, $heightRoundBtn, $colorWhiteFF, null);
         border-radius: 50%;
-        background-color: $colorWhiteFF; /* Цвет кнопки */
-        border: none;
-        color: $colorBlack15; /* Цвет стрелки */
-        padding: 0;
+        padding: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
       }
       h3 {
-        color: $colorWhiteFF;
-        font-family: "Manrope", sans-serif;
-        font-weight: 300;
-        font-size: 17px;
+        @include setFontManrope($colorWhiteFF, 300, 1.06rem);
       }
     }
-    .cart-description {
+    .cart-for-who-description {
       padding: 24px;
       h2 {
-        font-family: "Manrope", sans-serif;
-        font-style: normal;
-        font-weight: 200;
-        font-size: 2rem;
-        color: $colorWhiteF9;
+        @include setFontManrope($colorWhiteF9, 200, 2rem);
         margin: 0;
       }
       p {
-        font-family: "Manrope", sans-serif;
-        font-style: normal;
-        font-weight: 200;
-        font-size: 1.125rem;
-        color: $colorWhiteF9;
+        @include setFontManrope($colorWhiteF9, 200, 1.125rem);
       }
     }
   }
 }
 
-//HEADER============================================================================================
-.header {
-  z-index: 999;
-  width: $maxWidth;
+//4page
+.actor-div {
   display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  background-color: $colorBlack17;
+  flex-direction: column;
 }
-
-.home-header {
-  background-color: $colorBlack17;
-  width: $maxWidthContent;
-  height: $heightHomeHeader;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navigation {
-  width: $widthNavigation;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu {
+.actor-info {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  color: $colorWhiteFE;
-  li {
-    cursor: pointer;
-    font-family: "Manrope", sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1rem;
+  .actor-text {
+    width: 520px;
+    h1 {
+      @include setFontNoto($colorGrey35, 4.7rem);
+    }
+    p {
+      @include setFontManrope($colorBlack14, 200, 1.13rem);
+      margin: 1rem 0;
+    }
+    hr {
+      margin: 0;
+      background-color: #e0d9d3;
+      border-width: 0.5px;
+    }
+    ol {
+      list-style-type: none;
+      counter-reset: num;
+      font-size: 20px;
+      padding: 0;
+    }
+    li {
+      @include setFontManrope($colorBlack15, 200, 1.25rem);
+      text-decoration: none;
+      margin: 30px 0;
+      display: flex;
+      align-items: center;
+    }
+    li::before {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: counter(num);
+      counter-increment: num;
+      background-color: $colorBlack14;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: $colorWhiteFF;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+    .btn-connect-red {
+      @include setButtonStyles(270px, 60px, $colorRed08, $colorWhiteFF);
+    }
+  }
+  .frame4 {
+    .desktop {
+      width: 686px;
+    }
+    .mobile {
+      display: none;
+    }
   }
 }
 
-.auth {
-  width: $widthBoxHeader;
-  .btn {
-    cursor: pointer;
-    height: 54px;
-    background-color: $colorBlack16;
-    color: $colorWhiteF9;
-    border-radius: 10px;
-    font-family: "Manrope", sans-serif;
-    font-style: normal;
-    font-weight: 500;
+.casting-slider {
+  margin-top: 50px;
+  h2 {
+    @include setFontManrope($colorBlack14, 200, 2.5rem);
   }
-  .btn-enter {
-    width: 100px;
-    border: none;
-    font-size: 1rem;
+}
+
+.cart-casting {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 0.5px solid #e6e6e6;
+  border-radius: 16px;
+  img {
+    height: 292px;
   }
-  .btn-auth {
-    width: 140px;
+  .cart-casting-text {
+    padding: 0 24px;
+    h3 {
+      @include setFontManrope($colorGrey35, 300, 0.812rem);
+    }
+    p {
+      @include setFontManrope($colorGrey35, 300, 1.062rem);
+    }
+    .name-cinema {
+      @include setFontManrope(null, bold, 1.5rem);
+    }
+
+    .honorarium {
+      @include setFontManrope(null, bold, 2rem);
+    }
+  }
+}
+
+//5page
+.agent-info {
+  display: flex;
+  justify-content: space-between;
+  .frame5 {
+    width: 470px;
+    background-color: transparent;
+  }
+  .agent-text {
+    width: 520px;
+    h1 {
+      @include setFontNoto($colorWhiteF9, 4.7rem);
+    }
+    p {
+      @include setFontManrope($colorWhiteF9, 200, 1.13rem);
+      margin: 1rem 0;
+    }
+    hr {
+      margin: 0;
+      background-color: #e0d9d3;
+      border-width: 0.5px;
+    }
+    ol {
+      list-style-type: none;
+      counter-reset: num;
+      font-size: 20px;
+      padding: 0;
+    }
+    li {
+      @include setFontManrope($colorWhiteF9, 200, 1.25rem);
+      margin: 30px 0;
+      display: flex;
+      align-items: center;
+    }
+    li::before {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: counter(num);
+      counter-increment: num;
+      background-color: $colorWhiteF9;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: $colorBlack15;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+    .btn-connect-red {
+      @include setButtonStyles(270px, 60px, $colorRed08, $colorWhiteFF);
+    }
+  }
+}
+
+.actor-slider {
+  h2 {
+    @include setFontManrope($colorWhiteF9, 300, 2rem);
+  }
+}
+
+.card-actors {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  border-radius: 16px;
+  background-color: $colorGrey23;
+  .card-actors-description {
+    padding: 1rem;
+    p {
+      @include setFontManrope($colorWhiteF9, 300, 1rem);
+      margin: 0.5rem 0;
+    }
+  }
+}
+
+//page6
+.director-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .director-text {
+    width: 520px;
+    h1 {
+      @include setFontNoto($colorGrey35, 4.7rem);
+    }
+    p {
+      @include setFontManrope($colorBlack14, 200, 1.13rem);
+      margin: 1rem 0;
+    }
+    hr {
+      margin: 0;
+      background-color: #e0d9d3;
+      border-width: 0.5px;
+    }
+    ol {
+      list-style-type: none;
+      counter-reset: num;
+      font-size: 20px;
+      padding: 0;
+    }
+    li {
+      @include setFontManrope($colorBlack15, 200, 1.25rem);
+      text-decoration: none;
+      margin: 30px 0;
+      display: flex;
+      align-items: center;
+    }
+    li::before {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      content: counter(num);
+      counter-increment: num;
+      background-color: $colorBlack14;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: $colorWhiteFF;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+    .btn-connect-red {
+      @include setButtonStyles(270px, 60px, $colorRed08, $colorWhiteFF);
+    }
+  }
+  .frame6 {
+    width: 515px;
+    filter: grayscale(1);
+  }
+}
+
+.agent-slider {
+  h2 {
+    @include setFontManrope($colorBlack14, 300, 2rem);
+  }
+}
+
+.card-agent {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  border-radius: 16px;
+  border: 0.5px solid #e6e6e6;
+  background-color: transparent;
+  .card-agent-description {
+    padding: 1rem;
+    span {
+      display: flex;
+      align-items: center;
+      p {
+        @include setFontManrope($colorRed08, 300, 1rem);
+        margin-left: 8px;
+      }
+      img {
+        width: 24px;
+      }
+    }
+    p {
+      @include setFontManrope($colorBlack14, 300, 1rem);
+      margin: 0.3rem 0;
+    }
+  }
+}
+
+//7page
+.will-join-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  .first-line {
+    width: 100%;
+  }
+  .second-line {
+    width: 100%;
+    #one {
+      text-align: left;
+    }
+    #two {
+      text-align: center;
+    }
+    #tree {
+      text-align: right;
+    }
+  }
+  .btn-will-join-desktop {
+    @include setButtonStyles(215px, 70px, transparent, $colorWhiteF9);
     border: 0.5px solid $colorWhiteF9;
-    font-size: 1.07rem;
+    font-weight: 500;
+    font-size: 1.25rem;
   }
+  .btn-will-join-mobile {
+    display: none;
+  }
+  h1 {
+    @include setFontNoto($colorWhiteF9, 5.125rem);
+    span {
+      @include setFontManrope($colorRed08, 500, 4.9rem);
+      font-style: italic;
+    }
+  }
+}
+.first-line {
+  margin-bottom: 160px;
 }
 
-.logo {
-  width: $widthBoxHeader;
-  height: $heightBoxHeader;
-  .logo-faces {
-    cursor: pointer;
+//8page
+.contacts-div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0;
+  .contacts-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    h1 {
+      @include setFontNoto($colorGrey35, 4.7rem);
+    }
+    span {
+      margin: 1.5rem 0;
+    }
+    p {
+      @include setFontManrope($colorBlack14, 200, 1.13rem);
+      margin: 0.2rem;
+    }
+    .btn-contacts {
+      @include setButtonStyles(178px, 60px, $colorBlack15, $colorWhiteF9);
+    }
+  }
+  .contacts-img {
+    .mobile {
+      display: none;
+    }
+    .desktop {
+      display: block;
+    }
+    img {
+      filter: grayscale(1);
+    }
   }
 }
-p {
-  color: $colorWhiteFE;
+//footer
+footer {
+  width: 100%;
+  margin: 0;
+  padding: 1rem 0;
+  .top-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bottom-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  p {
+    @include setFontManrope($colorWhiteF9, 500, 0.9rem);
+    margin: 1rem 0.5rem;
+    cursor: pointer;
+  }
+  img {
+    cursor: pointer;
+  }
+  #bottom {
+    font-family: "Roboto";
+    font-weight: lighter;
+    font-size: 0.75rem;
+  }
+  .page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span {
+      display: flex;
+    }
+  }
 }

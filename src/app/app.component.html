@@ -1,25 +1,29 @@
-<div class="container">
-    <main class="pages">
-        <header class="header">
-            <div class="home-header">
-                <div class="logo">
-                    <img src="assets/img/Vector.png" alt="logo">
-                    <div class="logo-faces"></div>
-                </div>
-                <div class="navigation">
-                    <ul class="menu">
-                        <li>О проекте</li>
-                        <li>Преимущества</li>
-                        <li>Для кого</li>
-                        <li>Контакты</li>
-                    </ul>
-                </div>
+<div class="container" [ngClass]="{'isMobile': isMobile, 'isTablet': isTablet}">
+    <!-- [ngClass]="{'isMobile': isMobile, 'isTablet': isTablet}" -->
+    <header>
+        <nav>
+            <ul class='nav-bar'>
+                <li class='logo'><a href='#'><img src='assets/img/Vector.png' /></a></li>
+                <input type='checkbox' id='check' />
+                <span class="menu">
+                    <li><a href="#">О проекте</a></li>
+                    <li><a href="#">Преимущества</a></li>
+                    <li><a href="#">Для кого</a></li>
+                    <li><a href="#">Контакты</a></li>
+                    <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+                </span>
                 <div class="auth">
-                    <button class="btn btn-enter">Войти</button>
+                    <button class="btn btn-enter">
+                        <img src="assets/img/enter.png" alt="">
+                        <p>Войти</p>
+                    </button>
                     <button class="btn btn-auth">Регистрация</button>
                 </div>
-            </div>
-        </header>
+                <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+            </ul>
+        </nav>
+    </header>
+    <main class=" pages">
         <section class="page black home">
             <div class="content home-div">
                 <div class="text-home-div">
@@ -30,13 +34,14 @@
                     <button class="btn-connect">Присоединиться</button>
                 </div>
                 <div class="picture">
-                    <img src="assets/img/Frame1.png" alt="faces">
+                    <img src="assets/img/Frame1.png" alt="faces" id="desktop">
+                    <img src="assets/img/frame-1-mobile.png" alt="faces" id="mobile">
                 </div>
             </div>
         </section>
         <section class="page white about">
             <div class="content about-div">
-                <div class="foto-1">
+                <div class="column column--wide">
                     <span class="description">
                         <h1>О ПРОЕКТЕ</h1>
                         <p>FACES-это инновационная платформа, где встречаются таланты и возможности.Подробное описание
@@ -44,77 +49,212 @@
                             кастинг-директоров.
                         </p>
                     </span>
-                    <img src="assets/img/foto-2-1.png" alt="foto-woman-black-and-white">
+                    <img src="assets/img/foto-2-1.png" alt="photo-woman-black-and-white" class="photo-page-2">
                 </div>
-                <div class="foto-2">
+                <div class="column column--narrow">
                     <img src="assets/img/logo-group.png" alt="logo-group" id="logo">
-                    <img src="assets/img/foto-2-2.png" alt="foto-man-black-and-white">
+                    <img src="assets/img/foto-2-2.png" alt="photo-man-black-and-white" class="photo-page-2">
                 </div>
             </div>
         </section>
         <section class="page black for-who">
             <div class="content for-who-div">
                 <h1>ДЛЯ КОГО?</h1>
-                <div class="container-cart">
-                    <div class="cart">
-                        <div class="cart-description">
-                            <h2>АКТЁР</h2>
-                            <p>Создайте свой профиль и выделись среди талантливых актеров.</p>
+
+                <swiper-container class="swiper-for-who" slides-per-view="3" pagination="true"
+                    pagination-clickable="true" navigation="true" space-between="30" loop="true" speed="800"
+                    allowTouchMove="true">
+
+                    <swiper-slide *ngFor="let item of sliderForWho">
+                        <div class="cart-for-who">
+                            <div class="cart-for-who-description">
+                                <h2>{{item.textH2}}</h2>
+                                <p>{{item.textP}}</p>
+                            </div>
+                            <img [src]="item.image">
+                            <div class="show-more">
+                                <h3>ПОДРОБНЕЕ</h3>
+                                <button class="round-button">
+                                    <img src="assets/img/arrow-right.png">
+                                </button>
+                            </div>
                         </div>
-                        <img src="assets/img/foto-3-1.png" alt="">
-                        <div class="show-more">
-                            <h3>ПОДРОБНЕЕ</h3>
-                            <button class="round-button">
-                                <img src="assets/img/arrow-right.png">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="cart">
-                        <div class="cart-description">
-                            <h2>АГЕНТ</h2>
-                            <p>Расширяйте клиентскую базу и находите идеальные проекты.</p>
-                        </div>
-                        <img src="assets/img/foto-3-1.png" alt="">
-                        <div class="show-more">
-                            <h3>ПОДРОБНЕЕ</h3>
-                            <button class="round-button">
-                                <img src="assets/img/arrow-right.png">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="cart">
-                        <div class="cart-description">
-                            <h2>КАСТИНГ-ДИРЕКТОР</h2>
-                            <p>Выбирайте из многочисленных талантов с легкостью.</p>
-                        </div>
-                        <img src="assets/img/foto-3-1.png" alt="">
-                        <div class="show-more">
-                            <h3>ПОДРОБНЕЕ</h3>
-                            <button class="round-button">
-                                <img src="assets/img/arrow-right.png">
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                    </swiper-slide>
+                </swiper-container>
             </div>
         </section>
         <section class="page white actor">
-            <div class="content actor-div"></div>
+            <div class="content actor-div">
+                <div class="actor-info">
+                    <div class="actor-text">
+                        <h1>АКТЁР</h1>
+                        <p>Откройте для себя мир возможностей: кастинги, агенты, и многое другое.</p>
+                        <hr>
+                        <ol>
+                            <li>заполни профиль</li>
+                            <li>найди агента</li>
+                            <li>пройди кастинг</li>
+                            <li>стань лицом проекта</li>
+                        </ol>
+                        <button class="btn-connect-red">Присоединиться к FACES</button>
+                    </div>
+                    <div class="frame4">
+                        <img src="assets/img/Frame4.jpg" alt="photo-actors" class="desktop">
+                        <img src="assets/img/frame-3-mobile.png" alt="photo-actors" class="mobile">
+                    </div>
+                </div>
+                <div class="casting-slider">
+                    <h2>АКТУАЛЬНЫЕ КАСТИНГИ</h2>
+                    <swiper-container class="swiper-casting" slides-per-view="3" pagination="true"
+                        pagination-clickable="true" navigation="true" space-between="30" loop="true" speed="800">
+
+                        <swiper-slide *ngFor="let item of sliderCasting" class="slide-casting">
+                            <div class="cart-casting">
+                                <img [src]="item.image" alt="photo-casting">
+                                <div class="cart-casting-text">
+                                    <h3>{{item.companyName}}</h3>
+                                    <h2 class="name-cinema">{{item.movieTitle}}</h2>
+                                    <p>{{item.movieRole}}</p>
+                                    <h2 class="honorarium">{{item.honorarium}}</h2>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper-container>
+                </div>
+            </div>
         </section>
         <section class="page black agent">
-            <div class="content agent-div"></div>
+            <div class="content agent-div">
+                <div class="agent-info">
+                    <div class="frame5">
+                        <img src="assets/img/frame5.png" alt="photo-actors">
+                    </div>
+                    <div class="agent-text">
+                        <h1>АГЕНТ</h1>
+                        <p>Откройте для себя мир возможностей: кастинги, агенты, и многое другое.</p>
+                        <hr>
+                        <ol>
+                            <li>заполни профиль</li>
+                            <li>найди агента</li>
+                            <li>пройди кастинг</li>
+                            <li>стань лицом проекта</li>
+                        </ol>
+                        <button class="btn-connect-red">Присоединиться к FACES</button>
+                    </div>
+                </div>
+                <div class="slider actor-slider">
+                    <h2>АКТЁРЫ В ПОИСКАХ АГЕНТА</h2>
+                    <swiper-container class="swiper-actor" slides-per-view="4" pagination="true"
+                        pagination-clickable="true" navigation="true" space-between="30" loop="true" speed="800">
+                        <swiper-slide *ngFor="let item of sliderActors" class="slide-actor">
+                            <div class="card-actors">
+                                <div class="actor-img">
+                                    <img [src]="item.image" alt="photo-actor">
+                                </div>
+                                <div class="card-actors-description">
+                                    <p class="actor-name">{{item.actorName}}</p>
+                                    <p class="actor-age">{{item.actorAge}} лет</p>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper-container>
+                </div>
+            </div>
         </section>
         <section class="page white director">
-            <div class="content director-div"></div>
+            <div class="content director-div">
+                <div class="director-info">
+                    <div class="director-text">
+                        <h1>ДИРЕКТОР ПО КАСТИНГУ</h1>
+                        <p>Откройте для себя мир возможностей: кастинги, агенты, и многое другое.</p>
+                        <hr>
+                        <ol>
+                            <li>заполни профиль</li>
+                            <li>найди агента</li>
+                            <li>пройди кастинг</li>
+                            <li>стань лицом проекта</li>
+                        </ol>
+                        <button class="btn-connect-red">Присоединиться к FACES</button>
+                    </div>
+                    <div class="frame6">
+                        <img src="assets/img/frame6.png" alt="photo-actors">
+                    </div>
+                </div>
+                <div class="slider agent-slider">
+                    <h2>ПРЕДСТАВИТЕЛИ АРТИСТОВ</h2>
+                    <swiper-container class="swiper-agent" slides-per-view="4" pagination="true"
+                        pagination-clickable="true" navigation="true" space-between="30" loop="true" speed="800">
+                        <swiper-slide *ngFor="let item of sliderAgents" class="slide-agent">
+                            <div class="card-agent">
+                                <div class="agent-img">
+                                    <img [src]="item.image" alt="photo-agent">
+                                </div>
+                                <div class="card-agent-description">
+                                    <span><img src="assets/img/profile-2user.svg">
+                                        <p>
+                                            {{item.count}} {{item.actor}}
+                                        </p>
+                                    </span>
+                                    <p class="agent-name">{{item.agentName}}</p>
+                                    <p class="agent-age">{{item.agentAge}} лет</p>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </swiper-container>
+                </div>
+            </div>
         </section>
-        <section class="page black reviews">
-            <div class="content reviews-div"></div>
+        <section class="page will-join">
+            <div class="content will-join-div">
+                <div class="first-line">
+                    <h1>ПРОСОЕДИНЯЙТЕСЬ К <span>FACES</span> УЖЕ <span>СЕГОДНЯ</span> И НАЧНИТЕ</h1>
+                </div>
+                <div class="second-line">
+                    <span id="one">
+                        <h1>СВОЙ УСПЕШНЫЙ ПУТЬ </h1>
+                    </span>
+                    <span id="two">
+                        <h1>В МИРЕ АКТЕРСКОГО</h1>
+                    </span>
+                    <span id="tree">
+                        <h1><span>ИСКУССТВА</span></h1>
+                    </span>
+                </div>
+                <button class="btn-will-join-desktop">Присоединиться </button>
+                <button class="btn-will-join-mobile">Присоединиться к FACES</button>
+            </div>
         </section>
-        <section class="page white will-join">
-            <div class="content will-join-div"></div>
-        </section>
-        <section class="page black contacts">
-            <div class="content contacts-div"></div>
+        <section class="page white contacts">
+            <div class="content contacts-div">
+                <div class="contacts-info">
+                    <h1>КОНТАКТЫ</h1>
+                    <span>
+                        <p>Есть вопросы?</p>
+                        <p>Свяжитесь с нами для поддержки и дополнительной информации</p>
+                    </span>
+                    <button class="btn-contacts">Задать вопрос</button>
+                </div>
+                <div class="contacts-img">
+                    <img src="assets/img/Frame8.png" alt="photo-actor" class="desktop">
+                    <img src="assets/img/frame-8-mobile.png" alt="photo-actor" class="mobile">
+                </div>
+            </div>
         </section>
     </main>
+    <footer>
+        <div class="page black">
+            <div class="top-footer">
+                <span>
+                    <p>Политика конфиденциальности</p>
+                    <p>Пользовательское соглашение</p>
+                </span>
+                <img src="assets/img/footer-logo.png" alt="logo-faces" id="logo">
+            </div>
+            <div class="bottom-footer">
+                <p>faces-castings@gmail.com</p>
+                <img src="assets/img/Telegram.svg" alt="telegram" id="telegram">
+            </div>
+            <p id="bottom">&#169; 2023 FACES</p>
+        </div>
+    </footer>
 </div>

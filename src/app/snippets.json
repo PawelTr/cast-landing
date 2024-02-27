@@ -1,0 +1,7 @@
+{
+    "scss": {
+        "snippets": {
+            "smu": "@include-sm-u{\n\t${1}\n}"
+        }
+    }
+}

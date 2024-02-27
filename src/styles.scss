@@ -1,4 +1,34 @@
+@import "app/_vars.scss";
+@import "app/_breakpoints.scss";
+
 /* You can add global styles to this file, and also import other style files */
 body {
     margin: 0px;
+    width: auto;
+    display: grid;
+    // position: relative;
+    padding: 0;
+    // box-sizing: border-box;
+    // overflow-x: hidden;
+    // display: flex;
+    // // justify-items: center;
+    // justify-content: center;
+    // align-content: center;
 }
+
+// :root {
+//     --min-width: 320px;
+//     --max-width: 1920px;
+//     --max-width-content: calc(0.6677 * var(--max-width));
+//     --height-home-header: 80px;
+//     --btn-height: 54px;
+//     --btn-auth-width: 140px;
+//     --btn-enter-width: 100px;
+// }
+
+// @include xl {
+//     :root {
+//         --max-width: 1490px;
+//         --height-home-header: 100px;
+//     }
+// }
